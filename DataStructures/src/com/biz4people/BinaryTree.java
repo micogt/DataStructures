@@ -8,7 +8,7 @@ import java.util.List;
  * @author mlimaki
  *
  */
-public class BinaryTree<T extends Comparable<T>> implements Serializable{
+public class BinaryTree<T extends Comparable<T>> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -124,13 +124,20 @@ public class BinaryTree<T extends Comparable<T>> implements Serializable{
 		return list;
 	}
 	
+	public static int nodeHeight(BinaryTreeNode<? extends Comparable<?>> node) {
+        if (node == null) {
+            return 0;
+        }
+        return Math.max(nodeHeight(node.getLeftChild()), nodeHeight(node.getRightChild())) + 1;
+    }
+	
 	/**
 	 * 
 	 * @author mlimaki
 	 *
 	 * @param <E>
 	 */
-	class BinaryTreeNode<E> implements Serializable {
+	public static class BinaryTreeNode<E> implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 		
