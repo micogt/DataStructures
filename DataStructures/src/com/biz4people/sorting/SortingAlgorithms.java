@@ -1,8 +1,8 @@
 package com.biz4people.sorting;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.Stack;
 
 /**
@@ -131,14 +131,17 @@ public class SortingAlgorithms {
 	 * Gap sizes
 	 * SHELL_SEQUENCE FLOOR(N/2^k) i.e. [500, 250, 125, 62, 31, 15, 7, 3, 1] for N equals to 1000
 	 * PRATT_SEQUENCE successive numbers of the form 2^p3^q i.e. [2 3 4 6 8 9 12 16 18 24 27 32 36 48 54 64 72 81 96 108 128 144 162 192 216 243 256 288 324 384 432 486 ...]
-	 * KNUTH_SEQUENCE (3^k – 1)/2 i.e. [1, 4, 14, 40, 121, ...]
+	 * KNUTH_SEQUENCE (3^k – 1)/2 i.e. [1, 4, 13, 40, 121, ...]
 	 * @author mlimaki
 	 *
 	 */
 	public enum GAP { SHELL_SEQUENCE, PRATT_SEQUENCE, KNUTH_SEQUENCE }
 	
-	
-	
+	/**
+	 * 
+	 * @param unsorted
+	 * @return
+	 */
 	public static <T extends Comparable<T>> List<T> mergeSort(List<T> unsorted)
 	{
 		if(unsorted != null && !unsorted.isEmpty()) {
@@ -175,15 +178,42 @@ public class SortingAlgorithms {
 		return ret;
 	}
 	
-	
+	/**
+	 * 
+	 * @param unsorted
+	 * @return
+	 */
 	public static <T extends Comparable<T>> List<T> quickSort(List<T> unsorted)
 	{
+		if(unsorted == null  || unsorted.size() <= 1) {
+			return unsorted;
+		}
+		int pivotIndex = new Random().nextInt(unsorted.size()); // random not good enough???!!
 		
+		List<T> left = new ArrayList<T>();
+		List<T> right = new ArrayList<T>();
 		
+		for(int i = 0; i < unsorted.size(); i++) {
+			if(pivotIndex != i) {
+				if(unsorted.get(i).compareTo(unsorted.get(pivotIndex)) <= 0) {
+					left.add(unsorted.get(i));
+				} else if(unsorted.get(i).compareTo(unsorted.get(pivotIndex)) > 0) {
+					right.add(unsorted.get(i));
+				}
+			}
+		}
+
+		List<T> ret = new ArrayList<T>(); // are we hitting the memory heavily here?!!?
+		if(!left.isEmpty()) {
+			ret.addAll(quickSort(left));
+		}
 		
+		ret.add(unsorted.get(pivotIndex));
 		
-		
-		return null;
+		if(!right.isEmpty()) {
+			ret.addAll(quickSort(right));
+		}
+		return ret;
 	}
 	
 	public static <T extends Comparable<T>> List<T> heapSort(List<T> unsorted)
@@ -214,28 +244,5 @@ public class SortingAlgorithms {
 		
 		
 		return null;
-	}
-	
-	
-	public static void main(String[] args) {
-		List<Integer> number = Arrays.asList(new Integer[]{6, 5, 3, 1, 8, 7, 2, 4, 7, 9, 11, 18, 15, 2, 5, 0, 33, 78, 4, 66, 99, 4, 1000, 4, 6, 3, 0, 5, 11, 67, 330, 56, 20, 1, 77, 2});
-		System.out.println("Before: ");
-		printList(number);
-		System.out.println("");
-		System.out.println("After: ");
-		printList(mergeSort(number));
-	}
-	
-	private static <T> void printList(List<T> printList)
-	{
-		System.out.print("[");
-		int length = printList.size();
-		for(int i = 0; i < length; i++) {
-			System.out.print(printList.get(i));
-			if(i < length - 1) {
-				System.out.print(", ");
-			}
-		}
-		System.out.print("]");	
 	}
 }

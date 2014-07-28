@@ -1,4 +1,4 @@
-package com.biz4people;
+package com.biz4people.binarytree;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +20,16 @@ public class BinaryTree<T extends Comparable<T>> implements Serializable {
 		root = new BinaryTreeNode<T>();
 		root.setData(data);
 		size++;
+	}
+	
+	public BinaryTree(List<T> list) {
+		if(list != null && !list.isEmpty()) {
+			root = new BinaryTreeNode<T>(list.get(0));
+			size++;
+			for(int i = 1; i < list.size(); i++) {
+				insert(list.get(i));
+			}
+		}
 	}
 	
 	public int size() {
