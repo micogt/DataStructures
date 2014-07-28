@@ -45,38 +45,35 @@ public class BinaryTreeTest {
 		assertEquals(binaryTree.visitInOrder(), Arrays.asList(visited[0]));
 	}
 
-	
 	@Parameters
     public static Collection<Object[]> data() {
-            return Arrays.asList(new Object[][] {
-        		{
-        			new BinaryTree<Integer>(Arrays.asList(new Integer[] {8, 9, 2, 0, 100, 55, 6, 773, 20, 9, 5, 11, 67, 1, 10, 62, 98})),
-        			new Integer[][]{
-        				new Integer[]{0, 1, 2, 5, 6, 8, 9, 10, 11, 20, 55, 62, 67, 98, 100, 773}, //in
-        				new Integer[]{0, 1, 2, 5, 6, 9, 10, 11, 20, 55, 62, 67, 98, 100, 773, 8}, //post
-        				new Integer[]{8, 0, 1, 2, 5, 6, 9, 10, 11, 20, 55, 62, 67, 98, 100, 773} //pre
-        			}
-        		},
-        		{
-        			new BinaryTree<Integer>(Arrays.asList(new Integer[] {9, 7, 9, 3, 10, 9, 0, 13, 10, 30, 7})),
-        			new Integer[][]{
-        				new Integer[]{0, 3, 7, 9, 10, 13, 30}, //in
-        				new Integer[]{0, 3, 7, 10, 13, 30, 9}, //post
-        				new Integer[]{9, 0, 3, 7, 10, 13, 30} //pre
-        			}
-        		},
-        		{
-        			new BinaryTree<Integer>(Arrays.asList(new Integer[] {1, 2, 3, 40, 5, 16, 7, 80, -10, 0, 11, -23})),
-        			new Integer[][]{
-        				new Integer[]{-23, -10, 0, 1, 2, 3, 5, 7, 11, 16, 40, 80}, //in
-        				new Integer[]{-23, -10, 0, 2, 3, 5, 7, 11, 16, 40, 80, 1}, //post
-        				new Integer[]{1, -23, -10, 0, 2, 3, 5, 7, 11, 16, 40, 80} //pre
-        			}
-        		}
-        	});
+        return Arrays.asList(new Object[][] {
+    		{
+    			new BinaryTree<Integer>(Arrays.asList(new Integer[] {8, 9, 2, 0, 100, 55, 6, 773, 20, 9, 5, 11, 67, 1, 10, 62, 98})),
+    			new Integer[][]{
+    				new Integer[]{0, 1, 2, 5, 6, 8, 9, 10, 11, 20, 55, 62, 67, 98, 100, 773}, //in
+    				new Integer[]{0, 1, 2, 5, 6, 9, 10, 11, 20, 55, 62, 67, 98, 100, 773, 8}, //post
+    				new Integer[]{8, 0, 1, 2, 5, 6, 9, 10, 11, 20, 55, 62, 67, 98, 100, 773} //pre
+    			}
+    		},
+    		{
+    			new BinaryTree<Integer>(Arrays.asList(new Integer[] {9, 7, 9, 3, 10, 9, 0, 13, 10, 30, 7})),
+    			new Integer[][]{
+    				new Integer[]{0, 3, 7, 9, 10, 13, 30}, //in
+    				new Integer[]{0, 3, 7, 10, 13, 30, 9}, //post
+    				new Integer[]{9, 0, 3, 7, 10, 13, 30} //pre
+    			}
+    		},
+    		{
+    			new BinaryTree<Integer>(Arrays.asList(new Integer[] {1, 2, 3, 40, 5, 16, 7, 80, -10, 0, 11, -23})),
+    			new Integer[][]{
+    				new Integer[]{-23, -10, 0, 1, 2, 3, 5, 7, 11, 16, 40, 80}, //in
+    				new Integer[]{-23, -10, 0, 2, 3, 5, 7, 11, 16, 40, 80, 1}, //post
+    				new Integer[]{1, -23, -10, 0, 2, 3, 5, 7, 11, 16, 40, 80} //pre
+    			}
+    		}
+    	});
     }
-    
-    
     
     /**
 	 * @param args
